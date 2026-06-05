@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profa. Vanessa · IFB</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Outfit:wght@400;500;600;700&display=swap');
+
+:root {
+  --bg: #f7f5f2;
+  --surface: #ffffff;
+  --border: #e4e0db;
+  --ink: #1a1714;
+  --ink-mid: #4a453f;
+  --ink-soft: #8c857d;
+  --accent: #8b5a2b;
+  --accent-bg: #f5ede3;
+  --accent2: #2b4a5a;
+  --accent2-bg: #e3ecf0;
+  --green: #2d5a3d;
+  --green-bg: #e8f2eb;
+  --ff-serif: 'Cormorant Garamond', Georgia, serif;
+  --ff-sans: 'Outfit', system-ui, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--ff-sans);
+  background: var(--bg);
+  color: var(--ink);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* HEADER */
+.header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+  padding: 56px 24px 48px;
+  text-align: center;
+}
+
+.avatar {
+  width: 80px; height: 80px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  background: linear-gradient(135deg, var(--accent-bg), var(--accent2-bg));
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 20px;
+  font-family: var(--ff-serif);
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.header h1 {
+  font-family: var(--ff-serif);
+  font-size: clamp(1.8rem, 4vw, 2.4rem);
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 10px;
+}
+
+.header-tag {
+  display: inline-block;
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 16px;
+}
+
+.header-tag::before, .header-tag::after {
+  content: '—';
+  margin: 0 8px;
+  opacity: .5;
+}
+
+.header-desc {
+  font-size: .88rem;
+  font-weight: 400;
+  color: var(--ink-mid);
+  line-height: 1.7;
+  max-width: 480px;
+  margin: 0 auto 20px;
+}
+
+.header-badges {
+  display: flex; flex-wrap: wrap; gap: 7px;
+  justify-content: center;
+}
+
+.badge {
+  font-size: .67rem;
+  font-weight: 600;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: 3px 9px;
+  background: var(--bg);
+}
+
+/* MAIN */
+.main {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 40px 24px 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* CATEGORIA */
+.categoria {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity .5s ease, transform .5s ease;
+}
+.categoria.vis { opacity: 1; transform: translateY(0); }
+
+.cat-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+}
+
+.cat-icon {
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+
+.cat-icon.cerebro { background: var(--accent-bg); }
+.cat-icon.didatico { background: var(--accent2-bg); }
+.cat-icon.pesquisa { background: var(--green-bg); }
+
+.cat-titulo {
+  font-family: var(--ff-serif);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.cat-sub {
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-top: 1px;
+}
+
+/* CARDS DE LINK */
+.links-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.link-card {
+  background: var(--surface);
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  text-decoration: none;
+  transition: background .18s;
+  cursor: pointer;
+}
+
+.link-card:hover { background: var(--bg); }
+
+.link-card.cerebro:hover { background: var(--accent-bg); }
+.link-card.didatico:hover { background: var(--accent2-bg); }
+.link-card.pesquisa:hover { background: var(--green-bg); }
+
+.link-emoji {
+  font-size: 1.4rem;
+  flex-shrink: 0;
+  width: 36px;
+  text-align: center;
+}
+
+.link-info { flex: 1; }
+
+.link-titulo {
+  font-size: .95rem;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.3;
+}
+
+.link-desc {
+  font-size: .78rem;
+  font-weight: 400;
+  color: var(--ink-soft);
+  margin-top: 2px;
+  line-height: 1.4;
+}
+
+.link-arrow {
+  font-size: 1rem;
+  color: var(--border);
+  flex-shrink: 0;
+  transition: color .18s, transform .18s;
+}
+
+.link-card:hover .link-arrow {
+  color: var(--ink-soft);
+  transform: translateX(3px);
+}
+
+.link-card.cerebro:hover .link-arrow { color: var(--accent); }
+.link-card.didatico:hover .link-arrow { color: var(--accent2); }
+.link-card.pesquisa:hover .link-arrow { color: var(--green); }
+
+/* DIVISOR */
+.divisor {
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--border), transparent);
+  margin: 0;
+}
+
+/* FOOTER */
+footer {
+  text-align: center;
+  padding: 28px;
+  font-size: .73rem;
+  color: var(--ink-soft);
+  border-top: 1px solid var(--border);
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="avatar">V</div>
+  <div class="header-tag">IFB · LabConsumer/ENEDES</div>
+  <h1>Profa. Vanessa Cristina da Silva</h1>
+  <p class="header-desc">
+    Doutora em Linguística pela <strong>Universidade de Brasília (UnB)</strong> e em Linguística Teórica e Aplicada pela <strong>Universidade Complutense de Madrid</strong>. Professora do Instituto Federal de Brasília e pesquisadora do LabConsumer/ENEDES.
+  </p>
+  <div class="header-badges">
+    <span class="badge">Linguística Aplicada</span>
+    <span class="badge">Neurociências</span>
+    <span class="badge">Eye Tracking</span>
+    <span class="badge">Espanhol</span>
+    <span class="badge">IFB</span>
+  </div>
+</header>
+
+<!-- CONTEÚDO -->
+<main class="main">
+
+  <!-- NEUROCIÊNCIAS -->
+  <div class="categoria" id="cat1">
+    <div class="cat-header">
+      <div class="cat-icon cerebro">🧠</div>
+      <div>
+        <div class="cat-titulo">Neurociências</div>
+        <div class="cat-sub">Pesquisa em neurociências cognitivas</div>
+      </div>
+    </div>
+    <div class="links-list">
+      <a class="link-card cerebro" href="https://nessaespanhol78.github.io/Neurociencias/" target="_blank">
+        <div class="link-emoji">👁️</div>
+        <div class="link-info">
+          <div class="link-titulo">Eye Tracking em Neurociências Cognitivas</div>
+          <div class="link-desc">Revisão sistemática · III Simpósio de Integração, Inovação e Tecnologia · IFB 2025</div>
+        </div>
+        <div class="link-arrow">→</div>
+      </a>
+    </div>
+  </div>
+
+  <div class="divisor"></div>
+
+  <!-- MATERIAIS DIDÁTICOS -->
+  <div class="categoria" id="cat2">
+    <div class="cat-header">
+      <div class="cat-icon didatico">📚</div>
+      <div>
+        <div class="cat-titulo">Materiais Didáticos</div>
+        <div class="cat-sub">Atividades interativas de espanhol</div>
+      </div>
+    </div>
+    <div class="links-list">
+      <a class="link-card didatico" href="https://nessaespanhol78.github.io/materiais-espanhol/espanol-en-juego_2.html" target="_blank">
+        <div class="link-emoji">🎮</div>
+        <div class="link-info">
+          <div class="link-titulo">Espanhol em Jogo</div>
+          <div class="link-desc">Atividade interativa gamificada para o ensino de espanhol</div>
+        </div>
+        <div class="link-arrow">→</div>
+      </a>
+      <a class="link-card didatico" href="https://nessaespanhol78.github.io/materiais-espanhol/preterito-indefinido.html" target="_blank">
+        <div class="link-emoji">📝</div>
+        <div class="link-info">
+          <div class="link-titulo">Pretérito Indefinido</div>
+          <div class="link-desc">Material didático interativo sobre o pretérito indefinido em espanhol</div>
+        </div>
+        <div class="link-arrow">→</div>
+      </a>
+    </div>
+  </div>
+
+  <div class="divisor"></div>
+
+  <!-- PESQUISA -->
+  <div class="categoria" id="cat3">
+    <div class="cat-header">
+      <div class="cat-icon pesquisa">🔬</div>
+      <div>
+        <div class="cat-titulo">Pesquisa</div>
+        <div class="cat-sub">Materiais científicos e acadêmicos</div>
+      </div>
+    </div>
+    <div class="links-list">
+      <a class="link-card pesquisa" href="https://nessaespanhol78.github.io/Pesquisa/integridade-cientifica.html" target="_blank">
+        <div class="link-emoji">🎓</div>
+        <div class="link-info">
+          <div class="link-titulo">Integridade Científica no TCC</div>
+          <div class="link-desc">Guia sobre ética e boas práticas na pesquisa acadêmica</div>
+        </div>
+        <div class="link-arrow">→</div>
+      </a>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  Profa. Vanessa Cristina da Silva · IFB · LabConsumer/ENEDES
+</footer>
+
+<script>
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.categoria').forEach(c => obs.observe(c));
+</script>
+</body>
+</html>
