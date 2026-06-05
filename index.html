@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Profa. Vanessa Cristina da Silva</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Outfit:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --bg: #f7f5f2;
+  --surface: #ffffff;
+  --border: #e4e0db;
+  --border-strong: #c8c2bb;
+  --ink: #1a1714;
+  --ink-mid: #4a453f;
+  --ink-soft: #8c857d;
+  --accent: #8b5a2b;
+  --accent-bg: #f5ede3;
+  --accent2: #2b4a5a;
+  --accent2-bg: #e3ecf0;
+  --green: #5a7d3d;
+  --green-bg: #eaf0e3;
+  --ff-serif: 'Cormorant Garamond', Georgia, serif;
+  --ff-sans: 'Outfit', system-ui, sans-serif;
+}
+
+* , *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--ff-sans);
+  background: var(--bg);
+  color: var(--ink);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── HEADER COM GRADIENTE SUTIL ── */
+.header {
+  position: relative;
+  background:
+    radial-gradient(ellipse 90% 130% at 12% -20%, rgba(196,130,70,.30), transparent 55%),
+    radial-gradient(ellipse 80% 110% at 92% 10%, rgba(60,110,135,.32), transparent 55%),
+    linear-gradient(155deg, #221c16 0%, #2b2118 45%, #1c2730 100%);
+  padding: 76px 24px 60px;
+  text-align: center;
+  overflow: hidden;
+}
+
+/* textura decorativa de linhas finas */
+.header::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px);
+  background-size: 100% 30px;
+  pointer-events: none;
+  opacity: .6;
+}
+
+.header-inner { position: relative; z-index: 1; }
+
+/* ── MONOGRAMA VC ── */
+.monograma {
+  width: 168px; height: 168px;
+  margin: 0 auto 30px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.monograma svg { width: 100%; height: 100%; display: block; }
+
+.header h1 {
+  font-family: var(--ff-serif);
+  font-size: clamp(2.4rem, 5.2vw, 3.5rem);
+  font-weight: 700;
+  color: #fbf8f3;
+  line-height: 1.08;
+  margin-bottom: 10px;
+  letter-spacing: -.01em;
+}
+
+.header h1 .nome-destaque {
+  font-style: italic;
+  color: #e0a960;
+}
+
+.header-cargo {
+  display: inline-block;
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: #e0a960;
+  margin-bottom: 20px;
+}
+.header-cargo::before, .header-cargo::after {
+  content: '·';
+  margin: 0 10px;
+  color: rgba(224,169,96,.5);
+}
+
+.header-desc {
+  font-size: .92rem;
+  font-weight: 400;
+  color: rgba(251,248,243,.72);
+  line-height: 1.7;
+  max-width: 510px;
+  margin: 0 auto 24px;
+}
+.header-desc strong { color: #fbf8f3; font-weight: 600; }
+
+.header-badges {
+  display: flex; flex-wrap: wrap; gap: 7px;
+  justify-content: center;
+}
+.badge {
+  font-size: .67rem;
+  font-weight: 600;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  color: rgba(251,248,243,.85);
+  border: 1px solid rgba(224,169,96,.4);
+  border-radius: 99px;
+  padding: 4px 12px;
+  background: rgba(255,255,255,.06);
+}
+
+/* ── MAIN ── */
+.main {
+  max-width: 660px;
+  margin: 0 auto;
+  padding: 44px 24px 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 34px;
+}
+
+.categoria {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity .5s ease, transform .5s ease;
+}
+.categoria.vis { opacity: 1; transform: translateY(0); }
+
+.cat-header {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin-bottom: 14px;
+}
+
+.cat-icon {
+  width: 48px; height: 48px;
+  border-radius: 13px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.cat-icon svg { width: 26px; height: 26px; }
+.cat-icon.cerebro { background: var(--accent-bg); }
+.cat-icon.cerebro svg { stroke: var(--accent); }
+.cat-icon.didatico { background: var(--accent2-bg); }
+.cat-icon.didatico svg { stroke: var(--accent2); }
+.cat-icon.pesquisa { background: var(--green-bg); }
+.cat-icon.pesquisa svg { stroke: var(--green); }
+
+.cat-titulo {
+  font-family: var(--ff-serif);
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.1;
+}
+.cat-sub {
+  font-size: .7rem;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-top: 2px;
+}
+
+.links-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.link-card {
+  background: var(--surface);
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  text-decoration: none;
+  transition: background .18s;
+}
+.link-card.cerebro:hover { background: var(--accent-bg); }
+.link-card.didatico:hover { background: var(--accent2-bg); }
+.link-card.pesquisa:hover { background: var(--green-bg); }
+
+.link-emoji {
+  font-size: 1.4rem;
+  flex-shrink: 0;
+  width: 36px;
+  text-align: center;
+}
+.link-info { flex: 1; }
+.link-titulo {
+  font-size: .96rem;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.3;
+}
+.link-desc {
+  font-size: .78rem;
+  font-weight: 400;
+  color: var(--ink-soft);
+  margin-top: 2px;
+  line-height: 1.4;
+}
+.link-arrow {
+  font-size: 1rem;
+  color: var(--border-strong);
+  flex-shrink: 0;
+  transition: color .18s, transform .18s;
+}
+.link-card:hover .link-arrow { transform: translateX(3px); }
+.link-card.cerebro:hover .link-arrow { color: var(--accent); }
+.link-card.didatico:hover .link-arrow { color: var(--accent2); }
+.link-card.pesquisa:hover .link-arrow { color: var(--green); }
+
+footer {
+  text-align: center;
+  padding: 30px 24px;
+  font-size: .73rem;
+  color: var(--ink-soft);
+  border-top: 1px solid var(--border);
+}
+
+/* ── PASTAS RETRÁTEIS (ACCORDION) ── */
+.cat-header {
+  cursor: pointer;
+  user-select: none;
+  padding: 6px 4px;
+  border-radius: 10px;
+  transition: background .18s;
+}
+.cat-header:hover { background: rgba(139,90,43,.05); }
+
+.cat-toggle {
+  margin-left: auto;
+  font-size: 1.1rem;
+  color: var(--ink-soft);
+  transition: transform .3s ease, color .18s;
+  flex-shrink: 0;
+}
+.categoria.aberta .cat-toggle { transform: rotate(180deg); color: var(--accent); }
+
+.cat-count {
+  font-size: .7rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 99px;
+  padding: 2px 9px;
+  margin-left: 10px;
+}
+
+/* conteúdo retrátil */
+.links-wrapper {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .4s ease, margin-top .3s ease, opacity .3s ease;
+  opacity: 0;
+  margin-top: 0;
+}
+.categoria.aberta .links-wrapper {
+  max-height: 600px;
+  opacity: 1;
+  margin-top: 14px;
+}
+
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-inner">
+
+    <!-- MONOGRAMA VC ESTILIZADO -->
+    <div class="monograma">
+      <svg viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#e0a960"/>
+            <stop offset="100%" stop-color="#6aa3c0"/>
+          </linearGradient>
+          <linearGradient id="letterGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#f0c685"/>
+            <stop offset="100%" stop-color="#e0a960"/>
+          </linearGradient>
+        </defs>
+        <!-- anel externo -->
+        <circle cx="70" cy="70" r="66" fill="none" stroke="url(#ringGrad)" stroke-width="3"/>
+        <circle cx="70" cy="70" r="60" fill="none" stroke="rgba(224,169,96,.35)" stroke-width="1"/>
+        <!-- monograma VC -->
+        <text x="70" y="92" text-anchor="middle"
+              font-family="Cormorant Garamond, Georgia, serif"
+              font-size="74" font-weight="700" fill="url(#letterGrad)"
+              letter-spacing="-4">VC</text>
+        <!-- pequenos detalhes nas laterais -->
+        <circle cx="70" cy="8" r="3" fill="#e0a960"/>
+        <circle cx="70" cy="132" r="3" fill="#6aa3c0"/>
+      </svg>
+    </div>
+
+    <div class="header-cargo">Doutora · Professora · Pesquisadora</div>
+
+    <h1>Profa. <span class="nome-destaque">Vanessa Cristina</span> da Silva</h1>
+
+    <p class="header-desc">
+      Doutora em Linguística pela <strong>Universidade de Brasília (UnB)</strong> e em Linguística Teórica e Aplicada pela <strong>Universidade Complutense de Madrid</strong>. Professora do Instituto Federal de Brasília e pesquisadora do LabConsumer/ENEDES.
+    </p>
+
+    <div class="header-badges">
+      <span class="badge">Linguística Aplicada</span>
+      <span class="badge">Neurociências</span>
+      <span class="badge">Eye Tracking</span>
+      <span class="badge">Espanhol</span>
+      <span class="badge">IFB</span>
+    </div>
+
+  </div>
+</header>
+
+<!-- CONTEÚDO -->
+<main class="main">
+
+  <!-- NEUROCIÊNCIAS -->
+  <div class="categoria" id="cat1">
+    <div class="cat-header">
+      <div class="cat-icon cerebro"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5a3 3 0 0 0-3-3 3 3 0 0 0-2.9 2.2A2.8 2.8 0 0 0 3.5 7a2.8 2.8 0 0 0 .3 1.3A3 3 0 0 0 3 11a3 3 0 0 0 1.2 2.4A3 3 0 0 0 4 15a3 3 0 0 0 3 3 3 3 0 0 0 2.5 2A2.5 2.5 0 0 0 12 18z"/><path d="M12 5a3 3 0 0 1 3-3 3 3 0 0 1 2.9 2.2A2.8 2.8 0 0 1 20.5 7a2.8 2.8 0 0 1-.3 1.3A3 3 0 0 1 21 11a3 3 0 0 1-1.2 2.4A3 3 0 0 1 20 15a3 3 0 0 1-3 3 3 3 0 0 1-2.5 2A2.5 2.5 0 0 1 12 18z"/></svg></div>
+      <div>
+        <div class="cat-titulo">Neurociências</div>
+        <div class="cat-sub">Pesquisa em neurociências cognitivas</div>
+      </div>
+      <span class="cat-count">3</span>
+      <span class="cat-toggle">⌄</span>
+    </div>
+    <div class="links-wrapper"><div class="links-list">
+      <a class="link-card cerebro" href="https://nessaespanhol78.github.io/Neurociencias/" target="_blank">
+        <div class="link-emoji">👁️</div>
+        <div class="link-info">
+          <div class="link-titulo">Eye Tracking em Neurociências Cognitivas</div>
+          <div class="link-desc">Revisão sistemática · III Simpósio de Integração, Inovação e Tecnologia · IFB 2025</div>
+        </div>
+        <div class="link-arrow">→</div>
+      </a>
+      <a class="link-card cerebro" href="https://nessaespanhol78.github.io/Neurociencias/resumo.html" target="_blank">
+        <div class="link-emoji">🎞️</div>
+        <div class="link-info">
+          <div class="link-titulo">Slides — Revisão Sistemática de Eye Tracking</div>
+          <div class="link-desc">Apresentação completa com referências · III SIIT · IFB 2025</div>
+        </div>
+        <div class="link-arrow">→</div>
+      </a>
+      <a class="link-card cerebro" href="https://nessaespanhol78.github.io/Neurociencias/artigo.html" target="_blank">
+        <div class="link-emoji">📊</div>
+        <div class="link-info">
+          <div class="link-titulo">Análise da Atenção Visual — Curicaca e ConectaIF</div>
+          <div class="link-desc">Apresentação do artigo com Eye Tracking · Labconsumer/ENEDES · III SIIT</div>
+        </div>
+        <div class="link-arrow">→</div>
+      </a>
+    </div></div>
+  </div>
+
+  <!-- MATERIAIS DIDÁTICOS -->
+  <div class="categoria" id="cat2">
+    <div class="cat-header">
+      <div class="cat-icon didatico"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4h7a2.5 2.5 0 0 1 2.5 2.5V20a2 2 0 0 0-2-2H2z"/><path d="M22 4h-7a2.5 2.5 0 0 0-2.5 2.5V20a2 2 0 0 1 2-2H22z"/></svg></div>
+      <div>
+        <div class="cat-titulo">Materiais Didáticos</div>
+        <div class="cat-sub">Atividades interativas de espanhol</div>
+      </div>
+      <span class="cat-count">2</span>
+      <span class="cat-toggle">⌄</span>
+    </div>
+    <div class="links-wrapper"><div class="links-list">
+      <a class="link-card didatico" href="https://nessaespanhol78.github.io/materiais-espanhol/espanol-en-juego_2.html" target="_blank">
+        <div class="link-emoji">🎮</div>
+        <div class="link-info">
+          <div class="link-titulo">Espanhol em Jogo</div>
+          <div class="link-desc">Atividade interativa gamificada para o ensino de espanhol</div>
+        </div>
+        <div class="link-arrow">→</div>
+      </a>
+      <a class="link-card didatico" href="https://nessaespanhol78.github.io/materiais-espanhol/preterito-indefinido.html" target="_blank">
+        <div class="link-emoji">📝</div>
+        <div class="link-info">
+          <div class="link-titulo">Pretérito Indefinido</div>
+          <div class="link-desc">Material didático interativo sobre o pretérito indefinido em espanhol</div>
+        </div>
+        <div class="link-arrow">→</div>
+      </a>
+    </div></div>
+  </div>
+
+  <!-- PESQUISA -->
+  <div class="categoria" id="cat3">
+    <div class="cat-header">
+      <div class="cat-icon pesquisa"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6"/><path d="M10 3v5.5L5.5 17a2 2 0 0 0 1.8 3h9.4a2 2 0 0 0 1.8-3L14 8.5V3"/><path d="M7.5 14h9"/></svg></div>
+      <div>
+        <div class="cat-titulo">Pesquisa</div>
+        <div class="cat-sub">Materiais científicos e acadêmicos</div>
+      </div>
+      <span class="cat-count">1</span>
+      <span class="cat-toggle">⌄</span>
+    </div>
+    <div class="links-wrapper"><div class="links-list">
+      <a class="link-card pesquisa" href="https://nessaespanhol78.github.io/Pesquisa/integridade-cientifica.html" target="_blank">
+        <div class="link-emoji">🎓</div>
+        <div class="link-info">
+          <div class="link-titulo">Integridade Científica no TCC</div>
+          <div class="link-desc">Guia sobre ética e boas práticas na pesquisa acadêmica</div>
+        </div>
+        <div class="link-arrow">→</div>
+      </a>
+    </div></div>
+  </div>
+
+</main>
+
+<footer>
+  Profa. Vanessa Cristina da Silva · IFB · LabConsumer/ENEDES
+</footer>
+
+<script>
+// animação de entrada
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.categoria').forEach(c => obs.observe(c));
+
+// pastas retráteis: clicar no cabeçalho abre/fecha
+document.querySelectorAll('.cat-header').forEach(header => {
+  header.addEventListener('click', () => {
+    const cat = header.closest('.categoria');
+    cat.classList.toggle('aberta');
+  });
+});
+</script>
+</body>
+</html>
